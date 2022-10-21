@@ -7,8 +7,10 @@
     "depends": [],
     "data": [
         # security
+        "security/ir.model.access.csv",  # TODO security
         # data
         # reports
         # views
+        "views/auto_export.xml",
     ],
 }

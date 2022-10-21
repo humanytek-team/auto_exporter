@@ -8,7 +8,10 @@ from odoo.models import BaseModel
 class BaseModelExtend(models.AbstractModel):
     _inherit = "base"
 
-    # Odoo oficial method
+    def export_data(self, fields_to_export):
+        return super().export_data(fields_to_export)
+
+    # Odoo official
     def _export_rows(self, fields, *, _is_toplevel_call=True):
         """Export fields of the records in ``self``.
 
@@ -104,9 +107,9 @@ class BaseModelExtend(models.AbstractModel):
                                 if val or isinstance(val, (int, float)):
                                     current[j] = val
                             # append the other lines at the end
-                            # Custom method call
+                            # HomebrewSoft
                             value.fill_missing_fields(lines[-1], lines2[1:], fields2)
-                            # End custom method call
+                            # Odoo official
                             lines += lines2[1:]
                         else:
                             current[i] = ""

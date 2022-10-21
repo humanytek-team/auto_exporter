@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="auto_export_view_form" model="ir.ui.view">
+    <field name="name">auto_export.view.form</field>
+    <field name="model">auto_export</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <header>
+            <button name="export" string="Export" type="object" class="oe_highlight"/>
+          </header>
+          <group>
+            <field name="name"/>
+            <field name="export_id"/>
+            <field name="model_id"/>
+            <field name="cron_id"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="auto_export_action" model="ir.actions.act_window">
+    <field name="name">Auto Exports</field>
+    <field name="res_model">auto_export</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="auto_export_menu" name="Auto Export" parent="base.menu_custom" action="auto_export_action"/>
+</odoo>
