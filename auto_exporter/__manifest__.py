@@ -4,7 +4,9 @@
     "author": "HomebrewSoft",
     "website": "https://homebrewsoft.dev",
     "license": "LGPL-3",
-    "depends": [],
+    "depends": [
+        "ftp_save",  # TODO git url
+    ],
     "data": [
         # security
         "security/ir.model.access.csv",  # TODO security

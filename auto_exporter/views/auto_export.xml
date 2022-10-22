@@ -5,15 +5,16 @@
     <field name="model">auto_export</field>
     <field name="arch" type="xml">
       <form>
+        <header>
+          <button name="export" string="Export" type="object" class="oe_highlight"/>
+        </header>
         <sheet>
-          <header>
-            <button name="export" string="Export" type="object" class="oe_highlight"/>
-          </header>
           <group>
             <field name="name"/>
             <field name="export_id"/>
             <field name="model_id"/>
             <field name="cron_id"/>
+            <field name="ftp_server_id"/>
           </group>
         </sheet>
       </form>

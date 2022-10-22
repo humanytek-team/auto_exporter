@@ -1,3 +1,5 @@
+import csv
+from io import StringIO
 from typing import Any, List
 
 from odoo import _, api, fields, models
@@ -25,6 +27,11 @@ class AutoExport(models.Model):  # TODO Check
         comodel_name="ir.cron",
         string="Cron",
         readonly=True,
+    )
+    ftp_server_id = fields.Many2one(  # TODO add more ways to save
+        comodel_name="ftp_server",
+        string="FTP Server",
+        required=True,
     )
 
     def _get_cron_name(self):
@@ -65,12 +72,26 @@ class AutoExport(models.Model):  # TODO Check
         return Model.search([])  # TODO domain
 
     def _get_datas(self, records) -> List[List[Any]]:
-        return self._get_field_names() + records.export_data(self._get_field_names()).get(
+        return [self._get_field_names()] + records.export_data(self._get_field_names()).get(
             "datas", []
         )
+
+    def _get_file_name(self):
+        now = fields.Datetime.now()
+        return f"{self.name}_{now.isoformat()}.csv"
+
+    def _get_file_content(self, datas) -> bytes:
+        with StringIO() as file:
+            writer = csv.writer(file)
+            writer.writerows(datas)
+            return file.getvalue().encode("UTF-8")
+
+    def save(self, datas):
+        file_name = self._get_file_name()
+        file_content = self._get_file_content(datas)
+        self.ftp_server_id.upload(file_name, file_content)
 
     def export(self):
         records = self._get_records()
         datas = self._get_datas(records)
-        # self.save(datas)
-        pass
+        self.save(datas)
