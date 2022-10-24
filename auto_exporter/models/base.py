@@ -8,9 +8,6 @@ from odoo.models import BaseModel
 class BaseModelExtend(models.AbstractModel):
     _inherit = "base"
 
-    def export_data(self, fields_to_export):
-        return super().export_data(fields_to_export)
-
     # Odoo official
     def _export_rows(self, fields, *, _is_toplevel_call=True):
         """Export fields of the records in ``self``.
@@ -126,7 +123,9 @@ class BaseModelExtend(models.AbstractModel):
                         xidmap[cell].append((i, j))
             # for each model, xid-export everything and inject in matrix
             for model, ids in bymodels.items():
-                for record, xid in self.env[model].browse(ids).__ensure_xml_id():
+                for record, xid in (
+                    self.env[model].browse(ids)._BaseModel__ensure_xml_id()  # FIX namespace
+                ):
                     for i, j in xidmap.pop((record._name, record.id)):
                         lines[i][j] = xid
             assert not xidmap, "failed to export xids for %s" % ", ".join(
