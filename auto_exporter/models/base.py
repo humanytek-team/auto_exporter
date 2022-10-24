@@ -107,7 +107,7 @@ class BaseModelExtend(models.AbstractModel):
                                 if val or isinstance(val, (int, float)):
                                     current[j] = val
                             # append the other lines at the end
-                            # HomebrewSoft
+                            # Humanytek
                             value.fill_missing_fields(lines[-1], lines2[1:], fields2)
                             # Odoo official
                             lines += lines2[1:]

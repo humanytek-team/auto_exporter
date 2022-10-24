@@ -1,8 +1,7 @@
 {
     "name": "Auto Exporter",
     "version": "15.0.0.1.0",
-    "author": "HomebrewSoft",
-    "website": "https://homebrewsoft.dev",
+    "author": "Humanytek",
     "license": "LGPL-3",
     "depends": [
         "ftp_save",  # TODO git url
