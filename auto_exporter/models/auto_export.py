@@ -5,8 +5,9 @@ from typing import Any, List
 from odoo import _, api, fields, models
 
 
-class AutoExport(models.Model):  # TODO Check
-    _name = "auto_export"  # TODO
+class AutoExport(models.Model):
+    _name = "auto_export"
+    _description = "Auto Export"
 
     name = fields.Char(
         required=True,
