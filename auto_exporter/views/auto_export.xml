@@ -24,7 +24,7 @@
   <record id="auto_export_action" model="ir.actions.act_window">
     <field name="name">Auto Exports</field>
     <field name="res_model">auto_export</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">list,form</field>
   </record>
 
   <menuitem id="auto_export_menu" name="Auto Export" parent="base.menu_custom" action="auto_export_action"/>

@@ -54,7 +54,8 @@ class AutoExport(models.Model):
     def export_by_id(self, id):
         return self.browse(id).export()
 
-    @api.model
+    # @api.model
+    @api.model_create_multi
     def create(self, vals):
         res = super().create(vals)
         res._create_cron()
