@@ -4,7 +4,7 @@ from collections import defaultdict
 
 from odoo import models
 from odoo.models import BaseModel
-from odoo.tools import unique
+from odoo.tools import unique, groupby
 
 
 class BaseModelExtend(models.AbstractModel):
