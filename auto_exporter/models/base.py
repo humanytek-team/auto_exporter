@@ -1,8 +1,10 @@
 import collections
 import contextlib
+from collections import defaultdict
 
 from odoo import models
 from odoo.models import BaseModel
+from odoo.tools import unique
 
 
 class BaseModelExtend(models.AbstractModel):
